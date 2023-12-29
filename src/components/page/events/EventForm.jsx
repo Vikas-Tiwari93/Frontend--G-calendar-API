@@ -5,7 +5,7 @@ import Button from "../../common/Button";
 import "react-datetime-picker/dist/DateTimePicker.css";
 import "react-calendar/dist/Calendar.css";
 import "./eventform.css";
-export default function EventForm() {
+export default function EventForm({ setConformation, setIserror }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [email, setEmail] = useState("");
@@ -30,9 +30,13 @@ export default function EventForm() {
       })
       .then((data) => {
         console.log(data);
+        setConformation(true);
+        setTimeout(() => setConformation(false), 2000);
       })
       .catch((error) => {
         console.error("Error:", error);
+        setIserror(true);
+        setTimeout(() => setIserror(false), 2000);
       });
   };
   return (
